@@ -1,6 +1,5 @@
 package com.example.pertemuan12.modeldata
 
-import androidx.compose.foundation.gestures.DetectTapGesturesEnableNewDispatchingBehavior
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -8,31 +7,31 @@ data class DataSiswa(
     val id : Int,
     val nama : String,
     val alamat : String,
-    val telpon : String
+    val telpon : String,
 )
 
 data class UIStateSiswa(
-    val detailDataSiswa: DetailSiswa = DetailSiswa(),
-    val isEntryValid: Boolean = false
+    val detailSiswa: DetailSiswa = DetailSiswa(),
+    val isEntryValid : Boolean = false
 )
 
 data class DetailSiswa(
-    val id: Int = 0,
-    val nama: String = "",
-    val alamat: String = "",
-    val telpon: String = ""
+    val id : Int = 0,
+    val nama : String = "",
+    val alamat : String = "",
+    val telpon : String = "",
 )
 
-fun DetailSiswa.toDataSiswa(): DataSiswa = DataSiswa(
+fun DetailSiswa.toDataSiswa(): DataSiswa = DataSiswa (
     id = id,
     nama = nama,
     alamat = alamat,
     telpon = telpon
 )
 
-fun DataSiswa.toUiSiswa(isEntryValid: Boolean = false): UIStateSiswa =
+fun DataSiswa.toUIStateSiswa(isEntryValid: Boolean = false): UIStateSiswa =
     UIStateSiswa(
-        detailDataSiswa = this.toDetailSiswa(),
+        detailSiswa = this.toDetailSiswa(),
         isEntryValid = isEntryValid
     )
 
@@ -42,4 +41,3 @@ fun DataSiswa.toDetailSiswa(): DetailSiswa = DetailSiswa(
     alamat = alamat,
     telpon = telpon
 )
-
