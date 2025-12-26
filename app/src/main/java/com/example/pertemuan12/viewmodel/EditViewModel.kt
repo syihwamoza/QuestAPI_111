@@ -49,7 +49,15 @@ class EditViewModel(
         // Pastikan ada function toDataSiswa() di DetailSiswa atau extension function
         val call: Response<Void> =
             repositoryDataSiswa.editSatuSiswa(idSiswa, uiStateSiswa.detailSiswa.toDataSiswa())
+        if (call.isSuccessful) {
+            // PERBAIKAN: Ganti printIn (Typo) menjadi println (huruf L kecil)
+            println("Update Sukses : ${call.message()}")
+        } else {
+            // PERBAIKAN: Ganti printIn (Typo) menjadi println (huruf L kecil)
+            println("Update Error : ${call.errorBody()}")
+        }
+    }
+}
 
-    }}
 
 
