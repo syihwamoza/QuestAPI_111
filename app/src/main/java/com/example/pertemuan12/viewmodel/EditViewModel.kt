@@ -26,36 +26,4 @@ class EditViewModel(
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
 
-    init {
-        viewModelScope.launch {
-            uiStateSiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
-                .toUIStateSiswa(true)
-        }
-    }
-
-    fun updateUiState(detailSiswa: DetailSiswa) {
-        uiStateSiswa =
-            UIStateSiswa(detailSiswa = detailSiswa, isEntryValid = validasiInput(detailSiswa))
-    }
-
-    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
-        return with(uiState) {
-            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
-        }
-    }
-
-    suspend fun editSatuSiswa() {
-        // Pastikan ada function toDataSiswa() di DetailSiswa atau extension function
-        val call: Response<Void> = repositoryDataSiswa.editSatuSiswa(idSiswa, uiStateSiswa.detailSiswa.toDataSiswa())
-
-        if (call.isSuccessful) {
-            // PERBAIKAN: Ganti printIn (Typo) menjadi println (huruf L kecil)
-            println("Update Sukses : ${call.message()}")
-        } else {
-            // PERBAIKAN: Ganti printIn (Typo) menjadi println (huruf L kecil)
-            println("Update Error : ${call.errorBody()}")
-        }
-    }
-}
