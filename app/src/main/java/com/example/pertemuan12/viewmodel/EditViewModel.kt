@@ -25,5 +25,14 @@ class EditViewModel(
     // PERBAIKAN: Tambahkan tanda kurung () setelah UIStateSiswa untuk membuat object baru
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
+    private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+
+    init {
+        viewModelScope.launch {
+            uiStateSiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
+                .toUIStateSiswa(true)
+        }
+    }
+
 
 
