@@ -47,3 +47,7 @@ RepositoryDataSiswa
             }
         }
     }
+    @SuppressLint("SuspiciousIndentation")
+    suspend fun hapusSatuSiswa() {
+
+
