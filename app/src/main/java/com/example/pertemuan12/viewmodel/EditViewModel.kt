@@ -45,6 +45,11 @@ class EditViewModel(
         }
 
     }
-}
+    suspend fun editSatuSiswa() {
+        // Pastikan ada function toDataSiswa() di DetailSiswa atau extension function
+        val call: Response<Void> =
+            repositoryDataSiswa.editSatuSiswa(idSiswa, uiStateSiswa.detailSiswa.toDataSiswa())
+
+    }}
 
 
