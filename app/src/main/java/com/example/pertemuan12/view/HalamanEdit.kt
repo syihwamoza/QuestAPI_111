@@ -20,4 +20,23 @@ fun EditSiswaScreen(
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EditViewModel = viewModel(factory = PenyediaViewModel.Factory)
-) {}
+) {
+    Scaffold(
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiDetail.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
+        },
+        floatingActionButton = {
+            val uiState = viewModel.statusUIDetail
+            FloatingActionButton(
+                onClick = {
+                    when(uiState){ is StatusUIDetail.Success->
+                        navigateToEditItem(uiState.satusiswa.id) else->{}}
+                },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+
+            ) {
